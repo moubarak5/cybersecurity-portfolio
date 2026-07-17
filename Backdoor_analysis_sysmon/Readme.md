@@ -1,0 +1,20 @@
+- Project: Windows Sysmon Backdoor Analysis , attack simulation and log-based investigation.
+- Simulated a Windows 10 compromise using a 64-bit Meterpreter reverse HTTP payload (UnlockAllSubscriptions.exe).
+- Attack executed from a Kali Linux Metasploit operator (LHOST 10.0.2.15, LPORT 31337); C2 observed at 10.0.2.6:31337.
+- Goal: generate realistic Sysmon telemetry and demonstrate detection, hunting, and remediation techniques.
+- Environment: isolated lab VM with Sysmon enabled and Event Viewer used for analysis.
+- Attack lifecycle covered: initial execution, command-and-control, system enumeration, persistence, credential access, cleanup.
+- Initial access: payload downloaded from the Internet (ZoneId=3) and executed on the host.
+- C2: Meterpreter session established to a Metasploit multi-handler, enabling remote commands.
+- Enumeration: commands like whoami, hostname, systeminfo appeared in Process Creation events.
+- Persistence: created local admin account "backdoor" and a scheduled task "backdoortask".
+- Credential access: attacker downloaded Mimikatz (certutil used to fetch binary disguised as text).
+- Cleanup: temporary account removed but malicious executable remained, leaving forensic artifacts.
+- Telemetry emphasis: Sysmon Event IDs 1 (Process Create), 3 (Network Connect), 15 (File Create Stream Hash), 22 (DNS).
+- Key IoCs: UnlockAllSubscriptions.exe, SHA256 68062C61659529A13ED6213DD372BF06DB24924846C7E4616AB00E6B73F4C460, MD5 D0EFB3F71066539A65D3E42E0951CE23, account "backdoor", task "backdoortask", C2 10.0.2.6:31337.
+- MITRE ATT&CK mapping provided for execution, discovery, persistence, privilege escalation, credential dumping, and C2.
+- Findings show how specific Sysmon events reconstruct the attack timeline and reveal detection opportunities.
+- Recommendations: isolate host, remove malicious tasks/accounts, reset credentials, restore Defender/configuration, scan for other persistence, reimage if uncertain.
+- Audience: defenders, threat hunters, red teamers, and incident responders seeking hands-on detection practice.
+- Companion docs: Attack.md (step-by-step attack log) and Defense.md (detailed Sysmon analysis, IoCs, and remediation).
+- Reproduction details and artifacts (hashes, commands, and logs) are included in Defense.md for rule development and testing.
