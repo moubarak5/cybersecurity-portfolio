@@ -1,4 +1,4 @@
-# Windows Sysmon Log Analysis – Malware Attack Investigation
+# Windows Sysmon Log Analysis : Malware Attack Investigation
 
 ## Overview
 
