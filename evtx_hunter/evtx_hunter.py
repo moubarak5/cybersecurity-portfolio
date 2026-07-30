@@ -20,7 +20,7 @@ except ImportError:
     sys.exit(1)
 
 
-# ============ DETECTION DATABASES ============
+# DETECTION DATABASES
 
 # LOLBAS binaries commonly abused by attackers
 LOLBAS = {
