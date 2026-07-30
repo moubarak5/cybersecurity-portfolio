@@ -20,34 +20,30 @@ Parses `.evtx` files, runs 16 detection modules, and gives you a risk summary in
 
 ```bash
 pip install python-evtx lxml
-
-📖 Usage
+````
+# 📖 Usage
 Basic – Scan a file or directory
-bash
-
+```bash
 python evtx_hunter.py log5.evtx
 
-bash
-
 python evtx_hunter.py C:\Logs\ 
+````
 
-Export to CSV or JSON
-bash
+# Export to CSV or JSON
+````bash
 
 python evtx_hunter.py log5.evtx --csv report.csv
 python evtx_hunter.py log5.evtx --json report.json
-
-Search for a keyword
-bash
+````
+# Search for a keyword
+````bash
 
 python evtx_hunter.py log5.evtx --search "mimikatz"
-
-🧪 Sample Output
-
-https://screenshot.png
+````
+# 🧪 Sample Output
 
 Example:
-text
+````text
 
 ======================================================================
   DETECTION SUMMARY: 1 findings
@@ -61,7 +57,10 @@ CRITICAL FINDINGS (1)
   Count: 1  |  1 audit log clearing events (EVIDENCE TAMPERING)
       2019-11-15 08:19:02  EID=1102  Audit Log Cleared
 
-🛡️ Detection Modules
+````
+
+# 🛡️ Detection Modules
+````text
 Category	Event IDs / Patterns
 Brute Force	4625 failures grouped by IP/User
 Password Spray	>3 users from same IP
@@ -79,7 +78,8 @@ Ransomware Precursors	Shadow copy deletions, recovery disabling
 Process Injection	CreateRemoteThread (8), suspicious access rights (10)
 Time Anomalies	Logons outside 6am–10pm
 Security Changes	Firewall disabled, audit policy changes
-📂 Test Logs
+````
+# 📂 Test Logs
 
 Sample logs are included in the samples/ folder:
 
@@ -89,7 +89,7 @@ Sample logs are included in the samples/ folder:
 
     log5.evtx – 3 Security events incl. Audit Log Cleared (1102)
 
-⚠️ Limitations & Known Quirks
+# ⚠️ Limitations & Known Quirks
 
     CSV Export – Flattening arbitrary nested EventData fields required a dynamic pre-scan. It works, but memory usage can be heavy for massive files. Proceed with caution.
 
@@ -99,7 +99,7 @@ Sample logs are included in the samples/ folder:
 
     EventData Inconsistencies – Sysmon and Security logs use different field names (Image vs NewProcessName). The parser handles common ones but may miss obscure fields.
 
-🤔 What's Next?
+# 🤔 What's Next?
 
 Honestly, not sure yet. I've been playing with ideas like:
 
@@ -110,5 +110,3 @@ Honestly, not sure yet. I've been playing with ideas like:
     Real-time monitoring via Windows Event Collector
 
     A web UI for visual analysis
-
-But tbh, this was just me having fun with Python—so we'll see if I ever get around to it. 😅
